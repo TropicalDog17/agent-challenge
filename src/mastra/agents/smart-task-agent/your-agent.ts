@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 // Initialize environment variables
 dotenv.config();
 
-let NEWS_API_KEY = process.env.NEWS_API_KEY;
+// let NEWS_API_KEY = process.env.NEWS_API_KEY;
 
 const name = "News Intelligence Agent";
 const instructions = `
@@ -136,19 +136,6 @@ IMPORTANT: CONVERSATION FLOW
 export const newsIntelligenceAgent = new Agent({
   name,
   instructions,
-  model: {
-    ...model,
-    config: {
-      ...model.config,
-      temperature: 0.7,
-      maxTokens: 2000,
-      stopSequences: [],
-      functions: {
-        enabled: true,
-        forceSingleCall: false,
-        returnIntermediateSteps: true
-      }
-    }
-  },
+  model,
   tools: { newsSummarizerTool, updateNewsApiKeyTool },
 });
